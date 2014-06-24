@@ -3,61 +3,51 @@ svgEditor.addExtension('filter', function(S) {
     var NS = svgedit.NS;
     function changeFilter(filterValue){
         var filterData;
-        if(filterValue == 0){
-            $(currentElement).attr('data-filterId',"0");
+        if(filterValue == 'None'){
+            $(currentElement).attr('data-filterId',"None");
             $(document).find('.filter').remove();
             $(currentElement).removeAttr('filter');
         }else
-        if(filterValue == 1){
-            filterData='<filter class="filter" id="Colorize" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
-			'<feColorMatrix result="result2" type="saturate" values="1" in="SourceGraphic"/>'+
-			'<feFlood result="result1" flood-opacity="1"flood-color="rgb(254,102,0)"/>'+
-			'<feBlend result="result3" in="result1" in2="result2" mode="multiply"/>'+
-			'<feComposite operator="in" k2="1" in2="SourceGraphic" result="result4"/>'+
-			'</filter>';
-            $(currentElement).attr('filter',"url(#Colorize)");
-            $(currentElement).attr('data-filterId',"1");
-        }else
-        if(filterValue == 2){
+        if(filterValue == 'Desaturate'){
             filterData='<filter class="filter" id="Desaturate" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
 			'<feColorMatrix values="0" type="saturate"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Desaturate)");
-            $(currentElement).attr('data-filterId',"2");
+            $(currentElement).attr('data-filterId',"Desaturate");
         }else
-        if(filterValue == 3){
+        if(filterValue == 'Duotone'){
             filterData='<filter class="filter" id="Duotone" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+'<feColorMatrix values="0" type="saturate" result="result1"/>'+
 			'<feFlood result="result2" flood-color="rgb(9,111,152)"/>'+
 			'<feBlend result="result2" in2="result1" mode="screen"/>'+
 			'<feComposite operator="in" in2="SourceGraphic" in="result2"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Duotone)");
-            $(currentElement).attr('data-filterId',"3");
+            $(currentElement).attr('data-filterId',"Duotone");
         }else
-        if(filterValue == 4){
+        if(filterValue == 'Fluorescence'){
             filterData='<filter class="filter" id="Fluorescence" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
 			'<feColorMatrix values="0" type="hueRotate"/><feColorMatrix values="1" type="saturate"/>'+
 			'<feColorMatrix values="2 -1 0 0 0 0 2 -1 0 0 -1 0 2 0 0 0 0 0 1 0 " type="matrix"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Fluorescence)");
-            $(currentElement).attr('data-filterId',"4");
+            $(currentElement).attr('data-filterId',"Fluorescence");
         }else
-        if(filterValue == 5){
+        if(filterValue == 'Invert'){
             filterData='<filter class="filter" id="Invert" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
 			'<feColorMatrix values="1" type="saturate" result="fbSourceGraphic"/>'+
 			'<feColorMatrix values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0 " in="fbSourceGraphic"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Invert)");
-            $(currentElement).attr('data-filterId',"5");
+            $(currentElement).attr('data-filterId',"Invert");
         }else
-        if(filterValue == 6){
+        if(filterValue == 'Invert_hue'){
             filterData='<filter class="filter" id="Invert_hue" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
 			'<feColorMatrix values="180" type="hueRotate" result="result1"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Invert_hue)");
-            $(currentElement).attr('data-filterId',"6");
+            $(currentElement).attr('data-filterId',"Invert_hue");
         }else
-        if(filterValue == 7){
+        if(filterValue == 'Moonarize'){
             filterData='<filter class="filter" id="Moonarize" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
 			'<feColorMatrix values="180" type="hueRotate" result="fbSourceGraphic"/>'+
 			'<feColorMatrix result="result3" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0 " in="fbSourceGraphic"/>'+
@@ -66,9 +56,9 @@ svgEditor.addExtension('filter', function(S) {
 			'<feComposite operator="in" in2="SourceGraphic"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Moonarize)");
-            $(currentElement).attr('data-filterId',"7");
+            $(currentElement).attr('data-filterId',"Moonarize");
         }else
-        if(filterValue == 8){
+        if(filterValue == 'Quadritone_Fantasy'){
             filterData='<filter class="filter" id="Quadritone_Fantasy" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
 			'<feColorMatrix values="1" type="saturate" result="result2"/>'+
 			'<feColorMatrix type="hueRotate" in="result2" values="50" result="result1"/>'+
@@ -76,9 +66,9 @@ svgEditor.addExtension('filter', function(S) {
 			'<feColorMatrix type="hueRotate" values="300"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Quadritone_Fantasy)");
-            $(currentElement).attr('data-filterId',"8");
+            $(currentElement).attr('data-filterId',"Quadritone_Fantasy");
         }else
-        if(filterValue == 9){
+        if(filterValue == 'Sepia'){
             filterData='<filter class="filter" id="Sepia" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
 			'<feColorMatrix result="result2" type="saturate" values="0" in="SourceGraphic"/>'+
 			'<feFlood result="result1" flood-opacity="1" flood-color="rgb(160,67,0)"/>'+
@@ -88,9 +78,9 @@ svgEditor.addExtension('filter', function(S) {
 			'<feComposite operator="in" in2="SourceAlpha" in="result4"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Sepia)");
-            $(currentElement).attr('data-filterId',"9");
+            $(currentElement).attr('data-filterId',"Sepia");
         }else
-        if(filterValue == 10){
+        if(filterValue == 'Soft_Colors'){
             filterData='<filter class="filter" id="Soft_Colors" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
 			'<feColorMatrix values="1" type="saturate" result="result91"/>'+
 			'<feComposite in2="result91" k3="0.3" k2="0.4" k1="0.3" result="result15" operator="arithmetic"/>'+
@@ -102,9 +92,9 @@ svgEditor.addExtension('filter', function(S) {
 			'<feBlend mode="screen" in2="result6" result="result14"/><feComposite operator="in" result="result2" in2="SourceGraphic" in="result14"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Soft_Colors)");
-            $(currentElement).attr('data-filterId',"10");
+            $(currentElement).attr('data-filterId',"Soft_Colors");
         }else
-        if(filterValue == 11){
+        if(filterValue == 'Tritone'){
             filterData='<filter class="filter" id="Tritone" height="1" width="1" color-interpolation-filters="sRGB" y="0" x="0">'+
 			'<feColorMatrix result="r" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1 " type="matrix" in="SourceGraphic"/>'+
 			'<feColorMatrix  result="g" values="0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 " type="matrix" in="SourceGraphic"/>'+
@@ -127,14 +117,14 @@ svgEditor.addExtension('filter', function(S) {
 			'<feComposite operator="in" k1="1" in2="SourceGraphic" in="color"/>'+
 			'</filter>';
             $(currentElement).attr('filter',"url(#Tritone)");
-            $(currentElement).attr('data-filterId',"11");
+            $(currentElement).attr('data-filterId',"Tritone");
         }
-      
+
 
         //$(document).find('.filter').remove();
 
         var createDef = document.createElementNS(NS.SVG, 'defs');
-        createDef.setAttribute('class','imageFilter');
+        //createDef.setAttribute('class','imageFilter');
         var current_layer = svgCanvas.getCurrentDrawing().getCurrentLayer();
         var newDoc = svgedit.utilities.text2xml(filterData);
         var svg = document.importNode(newDoc.documentElement, true);
@@ -159,18 +149,17 @@ svgEditor.addExtension('filter', function(S) {
             size: 3,
             defval: "None",
             options: {
-                "0": "None",
-                "1": "Colorize",
-                "2": "Desaturate",
-                "3": "Duotone",
-                "4": "Fluorescence",
-				"5": "Invert",
-				"6": "Invert hue",
-				"7": "Moonarize",
-				"8": "Quadritone Fantasy",
-				"9": "Sepia",
-				"10": "Soft Colors",
-				"11": "Tritone"
+                "None": "None",
+                "Desaturate": "Desaturate",
+                "Duotone": "Duotone",
+                "Fluorescence": "Fluorescence",
+				"Invert": "Invert",
+				"Invert_hue": "Invert hue",
+				"Moonarize": "Moonarize",
+				"Quadritone_Fantasy": "Quadritone Fantasy",
+				"Sepia": "Sepia",
+				"Soft_Colors": "Soft Colors",
+				"Tritone": "Tritone"
             },
             events: {
                 change: function(){
