@@ -1,6 +1,6 @@
 svgEditor.addExtension('filter', function(S) {
     var currentElement;
-    var NS = svgedit.NS;
+    var NS = "http://www.w3.org/2000/svg";
     function changeFilter(filterValue){
         var filterData;
         if(filterValue == 'None'){

@@ -1,0 +1,53 @@
+Configuring the imageFilter Ext
+
+Step 1: Add the Ext to the Ext directory and add the Ext name into svg-editor.js or config,js for load the Ext.
+
+Step 2: By default svg edit did not support the all filter functionality so add the following code to sanitize.js,
+		They support only the filter and feGaussianBlur so you may replace filter,feGaussianBlur and image into following code.
+		Here you may replace this following code into "svgWhiteList_" variables
+	
+	"image": ["class","data-filterId","clip-path", "clip-rule", "filter", "height", "id", "mask", "opacity", "requiredFeatures", "style", "systemLanguage", "transform", "width", "x", "xlink:href", "xlink:title", "y"],
+	"filter": ["class", "color-interpolation-filters", "filterRes", "filterUnits", "height", "id", "primitiveUnits", "requiredFeatures", "width", "x", "xlink:href", "y"],
+    "feGaussianBlur": ["class","id","result","height","width","x","y","color-interpolation-filters","requiredFeatures", "stdDeviation"],
+    "feBlend":["in","in2","mode","class","id","result","height","width","x","y"],
+    "feColorMatrix":["type","values","in","class","id","result","height","width","x","y"],
+    "feComponentTransfer":["in","class","id","result","height","width","x","y","fefuncA","fefuncB","fefuncG","fefuncR"],
+    "feComposite":["in","in2","operator","k1","k2","k3","k4","class","id","result","height","width","x","y"],
+    "feConvolveMatrix":["in","order","kernelMatrix","divisor","bias","targetX","targetY","edgeMode","kernelUnitLength","preserveAlpha","class","id","result","height","width","x","y"],
+    "feDiffuseLighting":["in","surfaceScale","diffuseConstant","kernelUnitLength","class","id","result","height","width","x","y"],
+    "feDisplacementMap":["in","in2","scale","xChannelSelector","yChannelSelector","class","id","result","height","width","x","y"],
+    "feFlood":["flood-opacity","flood-color","class","id","result","height","width","x","y"],
+    "feImage":["preserveAspectRatio","xlink:href","class","id","result","height","width","x","y"],
+    "feMerge":["class","id","result","height","width","x","y"],
+    "feMorphology":["in","operator","radius","class","id","result","height","width","x","y"],
+    "feOffset":["in","dx","dy","class","id","result","height","width","x","y"],
+    "feSpecularLighting":["in","surfaceScale","specularConstant","specularExponent","kernelUnitLength","class","id","result","height","width","x","y"],
+    "feTile":["in","class","id","result","height","width","x","y"],
+    "feTurbulence":["baseFrequency","numOctaves","seed","stitchTiles","type","class","id","result","height","width","x","y"],
+    "feFuncA":["type","tableValues","slope","intercept","amplitude", "exponent","offset"],
+    "feFuncB":["type","tableValues","slope","intercept","amplitude", "exponent","offset"],
+    "feFuncG":["type","tableValues","slope","intercept","amplitude", "exponent","offset"],
+    "feFuncR":["type","tableValues","slope","intercept","amplitude", "exponent","offset"],
+    "feMergeNode":["in"],
+    "feDistantLight":["azimuth","elevation"],
+	
+	
+Step 3: Some of the svg-editor did not support the label for Ext "select" to enable this use the following  code into the svg-editor.js in the extAdded function
+	
+	case 'select':
+		html = '<label' + cont_id + '>'
+			+ '<span id="' + tool.id + '_label">'
+			+ tool.label + ':</span>'
+			+ '<select id="' + tool.id + '">';
+		$.each(tool.options, function(val, text) {
+			var sel = (val == tool.defval) ? " selected":"";
+			html += '<option value="'+val+'"' + sel + '>' + text + '</option>';
+		});
+		html += "</select></label>";
+		// Creates the tool, hides & adds it, returns the select element
+		var sel = $(html).appendTo(panel).find('select');
+
+		$.each(tool.events, function(evt, func) {
+			$(sel).bind(evt, func);
+		});
+	break;
