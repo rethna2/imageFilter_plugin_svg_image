@@ -119,10 +119,10 @@ svgEditor.addExtension('filter', function(S) {
             $(currentElement).attr('filter',"url(#Tritone)");
             $(currentElement).attr('data-filterId',"Tritone");
         }
-
-
-        //$(document).find('.filter').remove();
-
+		//this can remove the unwanted defs
+        if($(document).find('defs').html()==null){
+         $(this).remove();
+        }
         var createDef = document.createElementNS(NS.SVG, 'defs');
         //createDef.setAttribute('class','imageFilter');
         var current_layer = svgCanvas.getCurrentDrawing().getCurrentLayer();
