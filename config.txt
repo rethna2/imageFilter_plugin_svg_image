@@ -1,5 +1,7 @@
 Configuring the imageFilter Ext
 
+NOTE:"for STEP 2: please view the changes_In_Sanitize.html"
+
 Step 1: Add the Ext to the Ext directory and add the Ext name into svg-editor.js or config,js for load the Ext.
 
 Step 2: By default svg edit did not support the all filter functionality so add the following code to sanitize.js,
